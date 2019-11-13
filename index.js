@@ -22,11 +22,17 @@ const handlerFunction = async (event, context, callback) => {
       },
       ReturnValues: 'UPDATED_NEW'
     };
-    const response = await docClient.update(options).promise();
-    console.info({ response });
+    await docClient.update(options).promise();
+    const response = {
+      userId,
+      userName,
+      userSurname,
+      role
+    };
+
     const result = {
       statusCode: 200,
-      body: Object.assign(response.Attributes, { userId }),
+      body: response,
       headers: { 'content-type': 'application/json' }
     };
     callback(null, result);
