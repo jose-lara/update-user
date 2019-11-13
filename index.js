@@ -5,6 +5,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const handlerFunction = async (event, context) => {
   const { userName, userSurname, role } = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
   const { userId } = event.pathParameters;
+  console.info({ event });
 
   try {
     const options = {
