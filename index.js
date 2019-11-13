@@ -23,8 +23,9 @@ const handlerFunction = async (event, context, callback) => {
       ReturnValues: 'UPDATED_NEW'
     };
     const response = await docClient.update(options).promise();
+    console.info({ response });
     const result = {
-      statusCode: 201,
+      statusCode: 200,
       body: response.Item,
       headers: { 'content-type': 'application/json' }
     };
