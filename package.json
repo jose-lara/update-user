@@ -1,13 +1,22 @@
 {
-    "name": "hello-world",
-    "description": "Sample NodeJs web application",
-    "version": "0.0.1",
-    "private": true,
-    "devDependencies": {
-        "mocha": "5.0.0",
-        "unit.js": "2.0.0"
-    },
-    "scripts": {
-        "test": "mocha --recursive tests"
-    }
+  "name": "create-user",
+  "version": "1.0.0",
+  "description": "lambda  to create a new user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/lambda-talk"
+  },
+  "keywords": [
+    "create",
+    "user"
+  ],
+  "author": "Jose Lara",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^3.3.3"
+  }
 }
