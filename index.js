@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 const handlerFunction = async (event, context) => {
-  const { userName, userSurname, role } = event;
+  const { userName, userSurname, role } = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
   const { userId } = event.pathParameters;
 
   try {
