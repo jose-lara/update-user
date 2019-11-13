@@ -15,8 +15,5 @@
     "user"
   ],
   "author": "Jose Lara",
-  "license": "ISC",
-  "dependencies": {
-    "uuid": "^3.3.3"
-  }
+  "license": "ISC"
 }
