@@ -26,7 +26,7 @@ const handlerFunction = async (event, context, callback) => {
     console.info({ response });
     const result = {
       statusCode: 200,
-      body: response.Item,
+      body: Object.assign(response.Attributes, { userId }),
       headers: { 'content-type': 'application/json' }
     };
     callback(null, result);
