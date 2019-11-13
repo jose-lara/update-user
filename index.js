@@ -23,7 +23,7 @@ const handlerFunction = async (event, context, callback) => {
       ReturnValues: 'UPDATED_NEW'
     };
     await docClient.update(options).promise();
-    const response = {
+    const responseBody = {
       userId,
       userName,
       userSurname,
@@ -32,8 +32,9 @@ const handlerFunction = async (event, context, callback) => {
 
     const result = {
       statusCode: 200,
-      body: response,
-      headers: { 'content-type': 'application/json' }
+      body: JSON.stringify(responseBody),
+      headers: { 'content-type': 'application/json' },
+      isBase64Encoded: false
     };
     callback(null, result);
   } catch (e) {
