@@ -11,11 +11,13 @@ const handlerFunction = async (event, context, callback) => {
     const options = {
       TableName: 'User',
       Key: { userId },
-      UpdateExpression: 'set userName = :userName, userSurname = :userSurname, #role = :role',
+      UpdateExpression: 'set userName = :userName, userSurname = :userSurname, #role = :role, timestamp = :timestamp, active = :active',
       ExpressionAttributeValues: {
         ':userName': userName,
         ':userSurname': userSurname,
-        ':role': role
+        ':role': role,
+        ':timestamp': Date.now(),
+        ':active': true
       },
       ExpressionAttributeNames: {
         '#role': 'role'
