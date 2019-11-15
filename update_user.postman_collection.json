@@ -1,0 +1,46 @@
+{
+  "info": {
+    "_postman_id": "f9d84dd5-5e0e-4a38-bcee-580453df65a2",
+    "name": "Talk",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Update user",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n        \"userName\": \"German\",\n        \"role\": \"admin\",\n        \"userSurname\": \"Rodriguez\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://1he37zp82l.execute-api.eu-west-2.amazonaws.com/Stage/api/update-user/468626e0-0662-11ea-bb31-0f32554f313b",
+          "protocol": "https",
+          "host": ["1he37zp82l", "execute-api", "eu-west-2", "amazonaws", "com"],
+          "path": ["Stage", "api", "update-user", "468626e0-0662-11ea-bb31-0f32554f313b"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

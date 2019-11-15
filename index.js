@@ -1,15 +1,46 @@
-'use strict';
+const AWS = require('aws-sdk');
 
-var fs = require('fs');
-var path = require('path');
+const docClient = new AWS.DynamoDB.DocumentClient();
 
-exports.get = function(event, context, callback) {
-  var contents = fs.readFileSync(`public${path.sep}index.html`);
-  var result = {
-    statusCode: 200,
-    body: contents.toString(),
-    headers: {'content-type': 'text/html'}
-  };
+const handlerFunction = async (event, context, callback) => {
+  const { userName, userSurname, role } = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
+  const { userId } = event.pathParameters;
+  console.info({ event });
 
-  callback(null, result);
+  try {
+    const options = {
+      TableName: 'User',
+      Key: { userId },
+      UpdateExpression: 'set userName = :userName, userSurname = :userSurname, #role = :role, timestamp = :timestamp, active = :active',
+      ExpressionAttributeValues: {
+        ':userName': userName,
+        ':userSurname': userSurname,
+        ':role': role,
+        ':timestamp': Date.now(),
+        ':active': true
+      },
+      ExpressionAttributeNames: {
+        '#role': 'role'
+      },
+      ReturnValues: 'UPDATED_NEW'
+    };
+    await docClient.update(options).promise();
+    const responseBody = {
+      userId,
+      userName,
+      userSurname,
+      role
+    };
+
+    const result = {
+      statusCode: 200,
+      body: JSON.stringify(responseBody),
+      headers: { 'content-type': 'application/json' },
+      isBase64Encoded: false
+    };
+    callback(null, result);
+  } catch (e) {
+    return context.fail(e);
+  }
 };
+exports.handler = handlerFunction;
